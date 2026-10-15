@@ -49,7 +49,7 @@ export const createAppointment = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const db = await admin();
     if (await slotTaken(db, data.doctor, data.appointment_date, data.appointment_time)) return { ok: false as const, error: "taken" };
-    const { data: row, error } = await db.from("appointments").insert({ ...data, email: data.email.toLowerCase() }).select(cols).single();
+    const { data: row, error } = await db.from("appointments").insert({ ...data, notes: data.notes ?? null, email: data.email.toLowerCase() }).select(cols).single();
     if (error) throw new Error(error.message);
     return { ok: true as const, appointment: row };
   });
@@ -70,7 +70,7 @@ export const updateAppointment = createServerFn({ method: "POST" })
     const { data: existing } = await db.from("appointments").select("id").eq("email", email.toLowerCase()).eq("ref_code", ref_code.toUpperCase()).maybeSingle();
     if (!existing) return { ok: false as const, error: "notFound" };
     if (await slotTaken(db, fields.doctor, fields.appointment_date, fields.appointment_time, existing.id)) return { ok: false as const, error: "taken" };
-    const { data: row, error } = await db.from("appointments").update({ ...fields, status: "rescheduled", updated_at: new Date().toISOString() }).eq("id", existing.id).select(cols).single();
+    const { data: row, error } = await db.from("appointments").update({ ...fields, notes: fields.notes ?? null, status: "rescheduled", updated_at: new Date().toISOString() }).eq("id", existing.id).select(cols).single();
     if (error) throw new Error(error.message);
     return { ok: true as const, appointment: row };
   });
@@ -95,7 +95,7 @@ export const submitContact = createServerFn({ method: "POST" })
   )
   .handler(async ({ data }) => {
     const db = await admin();
-    const { error } = await db.from("contact_submissions").insert(data);
+    const { error } = await db.from("contact_submissions").insert({ ...data, subject: data.subject ?? null });
     if (error) throw new Error(error.message);
     return { ok: true };
   });

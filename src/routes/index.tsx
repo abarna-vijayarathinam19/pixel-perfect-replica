@@ -57,7 +57,7 @@ function Index() {
       <section className="mx-auto max-w-7xl px-4 pt-28">
         <div className="text-center"><Eyebrow>{t.services.eyebrow}</Eyebrow><h2 className="mt-4 text-3xl font-bold sm:text-4xl">{t.services.title}</h2></div>
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {t.services.items.map((s, i) => { const I = icons[i]; return (
+          {t.services.items.map((s, i) => { const I = icons[i]!; return (
             <div key={s.t} className="group rounded-2xl border bg-card p-6 transition hover:-translate-y-1 hover:shadow-glow">
               <span className="grid h-11 w-11 place-items-center rounded-xl bg-accent text-primary"><I className="h-5 w-5" /></span>
               <h3 className="mt-5 font-bold">{s.t}</h3><p className="mt-2 text-sm text-muted-foreground">{s.d}</p>

@@ -17,7 +17,7 @@ function Product() {
     <>
       <PageHero title={p.title} sub={p.sub} />
       <section className="mx-auto grid max-w-7xl gap-5 px-4 sm:grid-cols-2 lg:grid-cols-3">
-        {p.features.map((f, i) => { const I = icons[i]; return (
+        {p.features.map((f, i) => { const I = icons[i]!; return (
           <div key={f.t} className="rounded-2xl border bg-card p-6 transition hover:shadow-glow"><I className="h-7 w-7 text-primary" /><h3 className="mt-4 font-bold">{f.t}</h3><p className="mt-2 text-sm text-muted-foreground">{f.d}</p></div>); })}
       </section>
       <section className="mx-auto max-w-5xl px-4 pt-24">

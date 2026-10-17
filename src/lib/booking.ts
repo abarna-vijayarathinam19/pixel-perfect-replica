@@ -1,0 +1,1 @@
+export const BOOKING_URL = "https://login.avenset.com";

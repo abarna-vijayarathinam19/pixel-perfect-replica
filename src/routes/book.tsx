@@ -103,8 +103,8 @@ function NewBooking({ init }: { init: z.infer<typeof search> }) {
   return (
     <form className="grid gap-4 rounded-3xl border bg-card p-6 sm:grid-cols-2 sm:p-8" onSubmit={async (e) => {
       e.preventDefault();
-      if (!who.full_name || !who.email || !who.phone || !v.doctor || !v.appointment_date || !v.appointment_time) return toast.error(b.required);
-      if (v.appointment_date < today()) return toast.error(b.pastDate);
+      if (!who.full_name || !who.email || !who.phone || !v.doctor || !v.appointment_date || !v.appointment_time) { toast.error(b.required); return; }
+      if (v.appointment_date < today()) { toast.error(b.pastDate); return; }
       setSaving(true);
       try {
         const r = await createAppointment({ data: { ...who, ...v, notes: v.notes || null } });
@@ -142,7 +142,7 @@ function Manage() {
   return (
     <form className="grid gap-4 rounded-3xl border bg-card p-6 sm:grid-cols-2 sm:p-8" onSubmit={async (e) => {
       e.preventDefault();
-      if (v.appointment_date < today()) return toast.error(b.pastDate);
+      if (v.appointment_date < today()) { toast.error(b.pastDate); return; }
       setBusy(true);
       try {
         const r = await updateAppointment({ data: { ...auth, ...v, notes: v.notes || null } });

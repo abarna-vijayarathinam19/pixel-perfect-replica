@@ -8,3 +8,7 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep the external booking destination in a shared browser-safe module so every appointment and demo link stays consistent.
+- Keep additional website copy localized for all supported languages in a shared copy module.
+- Use a root-level pathname effect for page-top navigation so all content pages share the same behavior.

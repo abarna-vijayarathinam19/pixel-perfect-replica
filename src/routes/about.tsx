@@ -30,7 +30,7 @@ function About() {
       <section className="mx-auto max-w-7xl px-4 pt-24">
         <h2 className="text-center text-3xl font-bold">{a.valuesT}</h2>
         <div className="mt-10 grid gap-5 md:grid-cols-3">
-          {a.values.map((v, i) => { const I = icons[i]; return (
+          {a.values.map((v, i) => { const I = icons[i]!; return (
             <div key={v.t} className="rounded-2xl border bg-card p-6"><I className="h-8 w-8 text-primary" /><h3 className="mt-4 font-bold">{v.t}</h3><p className="mt-2 text-sm text-muted-foreground">{v.d}</p></div>); })}
         </div>
       </section>

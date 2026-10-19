@@ -37,11 +37,20 @@
   --color-moss: var(--moss);
   --color-lime: var(--lime);
   --color-pale: var(--pale);
+  --color-hero-foreground: var(--hero-foreground);
 }
 
 /* Palette: #384a13 olive, #687f31 moss, #739800 lime, #cbdc8b pale, #fdfdff white */
 :root {
-  --radius: 1rem;
+  --radius: 0.5rem;
+  --hero-foreground: oklch(0.995 0.003 286);
+  --testimonial-band: oklch(0.94 0.012 120);
+  --testimonial-surface: oklch(0.995 0.003 286);
+  --testimonial-ink: oklch(0.24 0.02 125);
+  --testimonial-muted: oklch(0.48 0.02 125);
+  --avatar-warm: oklch(0.87 0.06 65);
+  --avatar-cool: oklch(0.86 0.05 220);
+  --media-overlay: oklch(0.13 0.015 125 / 55%);
   --olive: oklch(0.38 0.08 125);
   --moss: oklch(0.55 0.11 124);
   --lime: oklch(0.62 0.16 125);
@@ -83,7 +92,7 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
   }
-  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: 0; }
   input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); }
 }
 
@@ -121,3 +130,16 @@
   outline: none;
   &:focus { border-color: var(--ring); box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 30%, transparent); }
 }
+
+.testimonial-band { background: var(--testimonial-band); color: var(--testimonial-ink); }
+.testimonial-band .text-muted-foreground { color: var(--testimonial-muted); }
+.testimonial-band .testimonial-card { background: var(--testimonial-surface); border: 1px solid color-mix(in oklab, var(--testimonial-ink) 10%, transparent); }
+.testimonial-band .text-muted-foreground\/50 { color: color-mix(in oklab, var(--testimonial-muted) 50%, transparent); }
+.testimonial-band > div > .text-center > span { background: var(--testimonial-surface); color: var(--testimonial-ink); }
+.avatar-tone-0 { background: var(--pale); color: var(--testimonial-ink); }
+.avatar-tone-1 { background: var(--avatar-warm); color: var(--testimonial-ink); }
+.avatar-tone-2 { background: var(--avatar-cool); color: var(--testimonial-ink); }
+.media-shade { background: var(--media-overlay); }
+.about-shade { background: linear-gradient(90deg, var(--background), color-mix(in oklab, var(--background) 88%, transparent) 40%, color-mix(in oklab, var(--background) 20%, transparent)); }
+@media (max-width: 640px) { .about-shade { background: color-mix(in oklab, var(--background) 82%, transparent); } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; } }

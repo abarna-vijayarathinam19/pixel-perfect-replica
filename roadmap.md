@@ -3,4 +3,4 @@
 - [x] Update testimonial masonry and add left-side booking image.
 - [ ] Add demo video (section ready; awaits user video).
 - [ ] Add real doctor and director profiles (sections ready; await user photos and details).
-- [ ] Verify page-top navigation and desktop/tablet/phone layouts.
+- [x] Verify page-top navigation and desktop/tablet/phone layouts.

@@ -30,7 +30,7 @@ function Index() {
             <p className="mt-5 max-w-xl text-lg text-muted-foreground">{t.hero.sub}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild size="lg"><a href={BOOKING_URL}>{t.hero.primary}<ArrowUpRight /></a></Button>
-              <Link to="/product" className="rounded-full border px-6 py-3 font-semibold hover:bg-secondary">{t.hero.secondary}</Link>
+              <Link to="/product" className="rounded-[25px] border px-6 py-3 font-semibold hover:bg-secondary">{t.hero.secondary}</Link>
             </div>
           </div>
           <div className="relative">
@@ -60,7 +60,7 @@ function Index() {
           <h2 className="mt-4 text-3xl font-bold sm:text-4xl">{t.about.title}</h2>
           <p className="mt-4 text-muted-foreground">{t.about.body}</p>
           <ul className="mt-6 space-y-3">{t.about.points.map((p) => <li key={p} className="flex items-center gap-3"><Check className="h-5 w-5 text-primary" />{p}</li>)}</ul>
-          <Link to="/about" className="mt-8 inline-block rounded-full border px-6 py-3 font-semibold hover:bg-secondary">{t.about.btn}</Link>
+          <Link to="/about" className="mt-8 inline-block rounded-[25px] border px-6 py-3 font-semibold hover:bg-secondary">{t.about.btn}</Link>
         </div>
       </section>
 
@@ -75,7 +75,7 @@ function Index() {
               <h3 className="text-xl font-bold">{p.n}</h3><p className="text-sm text-muted-foreground">{p.d}</p>
               <p className="mt-6 font-display text-4xl font-extrabold">{p.p}{p.p.startsWith("$") && <span className="text-base font-normal text-muted-foreground">{t.pricing.month}</span>}</p>
               <ul className="mt-6 space-y-2 text-sm">{p.f.map((x) => <li key={x} className="flex gap-2"><Check className="h-4 w-4 text-primary" />{x}</li>)}</ul>
-              <Link to="/contact" className={`mt-8 block rounded-full py-3 text-center font-semibold ${i === 1 ? "bg-gradient-primary text-primary-foreground" : "border hover:bg-secondary"}`}>{t.pricing.choose}</Link>
+              <Link to="/contact" className={`mt-8 block rounded-[25px] py-3 text-center font-semibold ${i === 1 ? "bg-gradient-primary text-primary-foreground" : "border hover:bg-secondary"}`}>{t.pricing.choose}</Link>
             </div>
           ))}
         </div>

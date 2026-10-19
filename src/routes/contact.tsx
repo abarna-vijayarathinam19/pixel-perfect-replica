@@ -45,7 +45,7 @@ function Contact() {
           <input type="email" className="field" required maxLength={255} placeholder={c.emailF} value={f.email} onChange={(e) => setF({ ...f, email: e.target.value })} />
           <input className="field" maxLength={200} placeholder={c.subject} value={f.subject} onChange={(e) => setF({ ...f, subject: e.target.value })} />
           <textarea className="field" required rows={6} maxLength={3000} placeholder={c.message} value={f.message} onChange={(e) => setF({ ...f, message: e.target.value })} />
-          <button disabled={busy} className="w-full rounded-full bg-gradient-primary py-3 font-semibold text-primary-foreground shadow-glow">{busy ? c.sending : c.send}</button>
+          <button disabled={busy} className="w-full rounded-[25px] bg-gradient-primary py-3 font-semibold text-primary-foreground shadow-glow">{busy ? c.sending : c.send}</button>
         </form>
       </section>
       <section className="mx-auto max-w-3xl px-4 pt-24">

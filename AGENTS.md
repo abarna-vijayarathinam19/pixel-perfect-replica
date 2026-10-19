@@ -12,3 +12,6 @@
 - Keep the external booking destination in a shared browser-safe module so every appointment and demo link stays consistent.
 - Keep additional website copy localized for all supported languages in a shared copy module.
 - Use a root-level pathname effect for page-top navigation so all content pages share the same behavior.
+
+- Compose the home search and supporting sections from dedicated components; local directory search covers identity, specialty, and hospital while live appointment availability belongs to the external booking portal.
+- Keep /book as a public portal handoff page so old internal links continue to work without creating appointments locally.

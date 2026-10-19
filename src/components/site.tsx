@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import { Menu, X, Globe, Activity } from "lucide-react";
+import { BOOKING_URL } from "@/lib/booking";
+import { Button } from "@/components/ui/button";
 import { useI18n, LANGS, type Lang } from "@/lib/i18n";
 
 function Logo() {
@@ -29,7 +31,7 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const links = [
     { to: "/", l: t.nav.home }, { to: "/about", l: t.nav.about }, { to: "/product", l: t.nav.product },
-    { to: "/book", l: t.nav.book }, { to: "/contact", l: t.nav.contact },
+    { to: "/contact", l: t.nav.contact },
   ] as const;
   return (
     <header className="sticky top-0 z-50 glass border-x-0 border-t-0">
@@ -39,18 +41,20 @@ export function Header() {
           {links.map((x) => (
             <Link key={x.to} to={x.to} activeOptions={{ exact: true }} className="text-sm text-muted-foreground transition hover:text-foreground" activeProps={{ className: "text-primary" }}>{x.l}</Link>
           ))}
+          <a href={BOOKING_URL} className="text-sm text-muted-foreground hover:text-foreground">{t.nav.book}</a>
         </nav>
         <div className="hidden items-center gap-3 lg:flex">
           <LangSwitch />
-          <Link to="/book" className="rounded-full bg-gradient-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-glow">{t.nav.cta}</Link>
+          <Button asChild><a href={BOOKING_URL}>{t.nav.cta}</a></Button>
         </div>
-        <button className="lg:hidden" aria-label="Menu" onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
+        <Button variant="ghost" size="icon" className="lg:hidden" aria-label="Menu" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</Button>
       </div>
       {open && (
         <div className="flex flex-col gap-3 border-t px-4 py-4 lg:hidden">
           {links.map((x) => <Link key={x.to} to={x.to} onClick={() => setOpen(false)} className="text-sm">{x.l}</Link>)}
+          <a href={BOOKING_URL} className="text-sm">{t.nav.book}</a>
           <LangSwitch />
-          <Link to="/book" onClick={() => setOpen(false)} className="rounded-full bg-gradient-primary px-4 py-2 text-center text-sm font-semibold text-primary-foreground">{t.nav.cta}</Link>
+          <Button asChild><a href={BOOKING_URL}>{t.nav.cta}</a></Button>
         </div>
       )}
     </header>
@@ -67,7 +71,7 @@ export function Footer() {
           <h4 className="font-semibold">{t.footer.company}</h4>
           <Link to="/about" className="block text-muted-foreground hover:text-primary">{t.nav.about}</Link>
           <Link to="/product" className="block text-muted-foreground hover:text-primary">{t.nav.product}</Link>
-          <Link to="/book" className="block text-muted-foreground hover:text-primary">{t.nav.book}</Link>
+          <a href={BOOKING_URL} className="block text-muted-foreground hover:text-primary">{t.nav.book}</a>
         </div>
         <div className="space-y-2 text-sm">
           <h4 className="font-semibold">{t.footer.legal}</h4>

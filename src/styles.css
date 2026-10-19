@@ -44,17 +44,19 @@
 :root {
   --radius: 0.5rem;
   --hero-foreground: oklch(0.995 0.003 286);
-  --testimonial-band: oklch(0.94 0.012 120);
-  --testimonial-surface: oklch(0.995 0.003 286);
-  --testimonial-ink: oklch(0.24 0.02 125);
-  --testimonial-muted: oklch(0.48 0.02 125);
-  --avatar-warm: oklch(0.87 0.06 65);
-  --avatar-cool: oklch(0.86 0.05 220);
+  --testimonial-band: var(--background);
+  --testimonial-surface: var(--card);
+  --testimonial-ink: var(--foreground);
+  --testimonial-muted: color-mix(in oklab, var(--pale) 65%, var(--foreground));
+  --testimonial-spotlight: radial-gradient(ellipse 70% 70% at 50% 0%, color-mix(in oklab, var(--moss) 28%, transparent), transparent 75%);
+  --testimonial-gradient: linear-gradient(145deg, color-mix(in oklab, var(--olive) 45%, var(--card)), var(--card) 75%);
+  --testimonial-featured: linear-gradient(145deg, color-mix(in oklab, var(--olive) 80%, var(--card)), var(--card) 90%);
+  --testimonial-shadow: 0 12px 36px -18px color-mix(in oklab, var(--lime) 35%, transparent);
   --media-overlay: oklch(0.13 0.015 125 / 55%);
-  --olive: oklch(0.38 0.08 125);
-  --moss: oklch(0.55 0.11 124);
-  --lime: oklch(0.62 0.16 125);
-  --pale: oklch(0.87 0.1 118);
+  --olive: oklch(0.38108359 0.08181108 125.721127);
+  --moss: oklch(0.56098522 0.10790559 123.691302);
+  --lime: oklch(0.62869369 0.15809482 125.044526);
+  --pale: oklch(0.86306900 0.10598134 118.341995);
   --background: oklch(0.13 0.015 125);
   --foreground: oklch(0.995 0.003 286);
   --card: oklch(0.18 0.02 125);
@@ -131,14 +133,14 @@
   &:focus { border-color: var(--ring); box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 30%, transparent); }
 }
 
-.testimonial-band { background: var(--testimonial-band); color: var(--testimonial-ink); }
+.testimonial-band { background: var(--testimonial-spotlight), var(--testimonial-band); color: var(--testimonial-ink); border-block: 1px solid var(--border); }
 .testimonial-band .text-muted-foreground { color: var(--testimonial-muted); }
-.testimonial-band .testimonial-card { background: var(--testimonial-surface); border: 1px solid color-mix(in oklab, var(--testimonial-ink) 10%, transparent); }
-.testimonial-band .text-muted-foreground\/50 { color: color-mix(in oklab, var(--testimonial-muted) 50%, transparent); }
-.testimonial-band > div > .text-center > span { background: var(--testimonial-surface); color: var(--testimonial-ink); }
-.avatar-tone-0 { background: var(--pale); color: var(--testimonial-ink); }
-.avatar-tone-1 { background: var(--avatar-warm); color: var(--testimonial-ink); }
-.avatar-tone-2 { background: var(--avatar-cool); color: var(--testimonial-ink); }
+.testimonial-band .testimonial-card { background: var(--testimonial-gradient); border: 1px solid color-mix(in oklab, var(--moss) 45%, transparent); box-shadow: var(--testimonial-shadow); transition: border-color 180ms ease, box-shadow 180ms ease; }
+.testimonial-band .testimonial-card:nth-child(3n + 1) { background: var(--testimonial-featured); border-color: color-mix(in oklab, var(--pale) 35%, transparent); }
+@media (hover: hover) { .testimonial-band .testimonial-card:hover { border-color: var(--moss); box-shadow: var(--shadow-glow); } }
+.avatar-tone-0 { background: var(--gradient-primary); color: var(--primary-foreground); }
+.avatar-tone-1 { background: var(--moss); color: var(--foreground); }
+.avatar-tone-2 { background: var(--olive); color: var(--pale); border: 1px solid var(--moss); }
 .media-shade { background: var(--media-overlay); }
 .about-shade { background: linear-gradient(90deg, var(--background), color-mix(in oklab, var(--background) 88%, transparent) 40%, color-mix(in oklab, var(--background) 20%, transparent)); }
 @media (max-width: 640px) { .about-shade { background: color-mix(in oklab, var(--background) 82%, transparent); } }

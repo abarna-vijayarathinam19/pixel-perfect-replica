@@ -11,9 +11,9 @@ export function Testimonials() {
   const { t } = useI18n();
   return <section className="testimonial-band mt-24 py-16 sm:py-20">
     <div className="mx-auto max-w-7xl px-4 sm:px-6">
-      <div className="text-center"><Eyebrow>{t.testi.eyebrow}</Eyebrow><h2 className="mt-4 text-3xl font-bold sm:text-4xl">{t.testi.title}</h2></div>
+      <div className="text-center"><Eyebrow>{t.testi.eyebrow}</Eyebrow><h2 className="mt-4 text-3xl font-bold text-gradient sm:text-4xl">{t.testi.title}</h2></div>
       <div className="mt-12 columns-1 gap-5 sm:columns-2 lg:columns-3 xl:columns-4">{t.testi.items.map((item, index) => <figure key={item.n} className="testimonial-card mb-5 break-inside-avoid rounded-lg p-6">
-        <Quote className="h-5 w-5 text-muted-foreground/50" />
+        <Quote className="h-5 w-5 text-pale" />
         <blockquote className={`mt-4 text-base leading-relaxed ${index % 3 === 0 ? "pb-7" : "pb-2"}`}>{item.q}</blockquote>
         <figcaption className="mt-7 flex min-w-0 items-center gap-3"><span className={`avatar-tone-${index % 3} grid h-10 w-10 shrink-0 place-items-center rounded-full font-display text-xs font-bold`} aria-hidden="true">{item.n.replace(/^Dr\. /, "").split(" ").map((part) => part[0]).slice(0, 2).join("")}</span><div className="min-w-0"><p className="text-sm font-semibold">{item.n}</p><p className="mt-0.5 text-xs text-muted-foreground">{item.r}</p></div></figcaption>
       </figure>)}</div>

@@ -15,3 +15,4 @@
 
 - Compose the home search and supporting sections from dedicated components; local directory search covers identity, specialty, and hospital while live appointment availability belongs to the external booking portal.
 - Keep /book as a public portal handoff page so old internal links continue to work without creating appointments locally.
+- Retain TanStack Start and prerender an explicit list of public content pages; local build packaging flattens browser output into dist, while managed Lovable builds retain server/client output so hosted contact submissions and publishing continue to work.

@@ -5,9 +5,21 @@
 //     React/TanStack dedupe, error logger plugins, and sandbox detection (port/host/strictPort).
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { staticRoutes } from "./scripts/static-export.mjs";
 
 export default defineConfig({
+  // Local prerendering uses Node only during the build; no server is uploaded.
+  // Lovable pins its own deployment preset and preserves hosted functionality.
+  nitro: { preset: "node-server" },
   tanstackStart: {
+    pages: staticRoutes.map((path) => ({ path })),
+    prerender: {
+      enabled: true,
+      autoStaticPathsDiscovery: false,
+      autoSubfolderIndex: true,
+      crawlLinks: false,
+      failOnError: true,
+    },
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },

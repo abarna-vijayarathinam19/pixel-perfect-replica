@@ -1,4 +1,6 @@
 # Website updates
+- [ ] Make npm run build generate a FileZilla-ready dist with index.html, public, and assets.
+- [ ] Verify the static export structure and document its contact-form limitation.
 - [x] Correct home filters and connect booking links to login.avenset.com.
 - [x] Update testimonial masonry and add left-side booking image.
 - [ ] Add demo video (section ready; awaits user video).

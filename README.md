@@ -30,6 +30,12 @@ npm install
 npm run build
 ```
 
+The project now includes **index.html**. Before the first build it is a build
+instruction entry, not the finished website. A successful local `npm run build`
+replaces it with a copy of the generated homepage for inspection. That root copy
+still references the assets in the upload folder; deploy the contents of `dist`,
+not the project-root file on its own.
+
 The generated home document is **dist/index.html**. It is a complete rendered
 page, not a placeholder; its styles, images, and interactions need the accompanying
 assets. Upload **all contents of dist**, not just index.html, to your domain's web

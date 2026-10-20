@@ -27,6 +27,12 @@ async function fixture() {
 }
 
 describe('FileZilla static export', () => {
+  it('also provides the generated homepage as a project-level index.html', async () => {
+    const config = await fixture();
+    const projectIndexFile = path.join(path.dirname(config.outputDir), 'index.html');
+    await exportStaticSite({ ...config, projectIndexFile });
+    expect(await readFile(projectIndexFile, 'utf8')).toBe(await readFile(path.join(config.outputDir, 'index.html'), 'utf8'));
+  });
   it('produces index.html, public/ and assets/ directly inside dist without client/server folders', async () => {
     const config = await fixture();
     await exportStaticSite(config);

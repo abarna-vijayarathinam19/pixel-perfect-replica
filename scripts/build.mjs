@@ -18,7 +18,7 @@ if (!managedBuild) {
     existsSync(path.join(directory, 'index.html')),
   );
   if (!clientDir) throw new Error('No prerendered index.html found. Static export was not produced.');
-  await exportStaticSite({ clientDir, publicDir: 'public', outputDir: 'dist' });
+  await exportStaticSite({ clientDir, publicDir: 'public', outputDir: 'dist', projectIndexFile: 'index.html' });
   console.log('Static upload ready: dist/index.html, dist/assets/, dist/public/, and all page directories.');
   console.warn('Static hosting cannot execute the contact form server function. Keep a hosted service for contact submissions.');
 }

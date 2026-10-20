@@ -1,4 +1,6 @@
 # Website updates
+- [x] Configure local npm run build to export index.html, public, assets, and all page directories directly into dist.
+- [x] Test the static packaging rules and document the contact-form limitation (7 tests passed; full local production export not executed in the managed sandbox).
 - [x] Correct home filters and connect booking links to login.avenset.com.
 - [x] Update testimonial masonry and add left-side booking image.
 - [ ] Add demo video (section ready; awaits user video).

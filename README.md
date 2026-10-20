@@ -1,6 +1,4 @@
-# Pixel Perfect Replica
-
-Implement exactly the screenshot and nothing else
+# Avenset website
 
 This project was built with [Lovable](https://lovable.dev).
 
@@ -22,3 +20,50 @@ cd <repository-name>
 npm i
 npm run dev
 ```
+
+## Static upload with FileZilla
+
+Run locally with Node.js 22 or newer:
+
+```sh
+npm install
+npm run build
+```
+
+The generated home document is **dist/index.html**. It is a complete rendered
+page, not a placeholder; its styles, images, and interactions need the accompanying
+assets. Upload **all contents of dist**, not just index.html, to your domain's web
+root (for example `public_html`):
+
+```text
+dist/
+  index.html
+  assets/
+  public/
+  about/index.html
+  product/index.html
+  book/index.html
+  contact/index.html
+  privacy/index.html
+  terms/index.html
+  favicon.ico
+  robots.txt
+```
+
+Page directories are intentional: Apache can open or refresh `/about/` and the
+other pages using their own index.html, without a running Node server or SPA
+rewrite configuration. Deploy at the domain root; subdirectory hosting is not
+configured. Vite keeps root public-file copies for existing URLs and the exporter
+also includes the requested `public/` folder. No `client/` or `server/` directory
+is included in the local upload output.
+
+**Contact form limitation:** a static host cannot execute the contact submission
+server function. The page renders, but saving messages requires the hosted
+application or a separately configured service. Appointment and demo links still
+open https://login.avenset.com. Do not put private service keys into static files.
+
+`npm run build:hosted` keeps the full-stack output for a server deployment.
+Managed Lovable builds also preserve that output automatically.
+
+Still awaiting supplied content: the demo video and genuine doctor/director
+photos, names, positions, and specialties.

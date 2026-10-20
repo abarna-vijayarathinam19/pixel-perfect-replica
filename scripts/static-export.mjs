@@ -3,7 +3,7 @@ import path from 'node:path';
 
 export const staticRoutes = ['/', '/about', '/product', '/book', '/contact', '/privacy', '/terms'];
 
-export async function exportStaticSite({ clientDir, publicDir, outputDir }) {
+export async function exportStaticSite({ clientDir, publicDir, outputDir, projectIndexFile }) {
   const source = path.resolve(clientDir);
   const destination = path.resolve(outputDir);
   if (source === destination) throw new Error('Static export requires a separate client source directory.');
@@ -30,4 +30,8 @@ export async function exportStaticSite({ clientDir, publicDir, outputDir }) {
   // Vite's root copies remain in place: /favicon.ico and /robots.txt still resolve.
   await rm(destination, { recursive: true, force: true });
   await rename(staging, destination);
+  if (projectIndexFile) {
+    // The root copy is provided for inspection; dist remains the upload folder.
+    await cp(path.join(destination, 'index.html'), projectIndexFile);
+  }
 }

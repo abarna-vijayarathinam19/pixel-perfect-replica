@@ -2,6 +2,7 @@ import { spawnSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { exportStaticSite } from './static-export.mjs';
+import { shouldExportStatic } from './build-mode.mjs';
 
 const result = spawnSync(process.execPath, ['node_modules/vite/bin/vite.js', 'build'], {
   stdio: 'inherit',
@@ -12,8 +13,7 @@ if (result.status !== 0) process.exit(result.status ?? 1);
 
 // Lovable publishing needs its original server/client output. Local npm builds
 // instead package the prerendered browser output for ordinary static hosting.
-const managedBuild = process.env.LOVABLE_SANDBOX === '1' || Boolean(process.env.DEV_SERVER__PROJECT_PATH);
-if (!managedBuild) {
+if (shouldExportStatic(process.env)) {
   const clientDir = ['dist/client', '.output/public'].find((directory) =>
     existsSync(path.join(directory, 'index.html')),
   );

@@ -3,6 +3,7 @@ import { mkdtemp, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promis
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { exportStaticSite, staticRoutes } from '../../scripts/static-export.mjs';
+import { shouldExportStatic } from '../../scripts/build-mode.mjs';
 
 const roots: string[] = [];
 afterEach(async () => { await Promise.all(roots.splice(0).map((root) => rm(root, { recursive: true, force: true }))); });
@@ -27,6 +28,15 @@ async function fixture() {
 }
 
 describe('FileZilla static export', () => {
+  it('exports npm run build into dist even with inherited managed environment flags', () => {
+    expect(shouldExportStatic({ npm_config_user_agent: 'npm/11.0.0 node/v22.0.0', LOVABLE_SANDBOX: '1', DEV_SERVER__PROJECT_PATH: '/project' })).toBe(true);
+  });
+  it('preserves server output for managed Lovable builds', () => {
+    expect(shouldExportStatic({ npm_config_user_agent: 'bun/1.3.0', LOVABLE_SANDBOX: '1' })).toBe(false);
+  });
+  it('exports ordinary local builds into dist', () => {
+    expect(shouldExportStatic({})).toBe(true);
+  });
   it('also provides the generated homepage as a project-level index.html', async () => {
     const config = await fixture();
     const projectIndexFile = path.join(path.dirname(config.outputDir), 'index.html');

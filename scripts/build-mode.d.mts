@@ -1,0 +1,1 @@
+export function shouldExportStatic(env: Record<string, string | undefined>): boolean;

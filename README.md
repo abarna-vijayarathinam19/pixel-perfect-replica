@@ -30,6 +30,10 @@ npm install
 npm run build
 ```
 
+`npm run build` always packages the website directly in `dist/`, including when
+your terminal inherits Lovable environment settings. You do not upload `.output/`,
+`dist/client/`, or `dist/server/`; upload the contents of `dist/`.
+
 The project now includes **index.html**. Before the first build it is a build
 instruction entry, not the finished website. A successful local `npm run build`
 replaces it with a copy of the generated homepage for inspection. That root copy
@@ -69,7 +73,7 @@ application or a separately configured service. Appointment and demo links still
 open https://login.avenset.com. Do not put private service keys into static files.
 
 `npm run build:hosted` keeps the full-stack output for a server deployment.
-Managed Lovable builds also preserve that output automatically.
+Managed Lovable builds using Bun also preserve that output automatically.
 
 Still awaiting supplied content: the demo video and genuine doctor/director
 photos, names, positions, and specialties.

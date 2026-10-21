@@ -1,4 +1,5 @@
 # Website updates
+- [x] Ensure explicit npm run build exports directly into dist even with inherited Lovable environment flags.
 - [x] Add project-level index.html and copy the generated homepage into it after local static export.
 - [x] Configure local npm run build to export index.html, public, assets, and all page directories directly into dist.
 - [x] Test the static packaging rules and document the contact-form limitation (7 tests passed; full local production export not executed in the managed sandbox).
